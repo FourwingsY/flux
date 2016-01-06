@@ -5,8 +5,6 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @flow
  */
 
 'use strict';
@@ -17,12 +15,9 @@ import type Todo from '../flux-infra/Todo';
 import React, {Component} from 'react';
 import {dispatch} from '../flux-infra/TodoDispatcher';
 
-type Props = {
-  todos: Immutable.Map<string, Todo>,
-};
 
-export default class Footer extends Component<{}, Props, {}> {
-  render(): ?ReactElement {
+export default class Footer extends Component {
+  render() {
     const {todos} = this.props;
 
     if (todos.size === 0) {
@@ -56,7 +51,7 @@ export default class Footer extends Component<{}, Props, {}> {
     );
   }
 
-  _onClearCompletedClick(): void {
+  _onClearCompletedClick() {
     dispatch({type: 'todo/destroy-completed'});
   }
 }

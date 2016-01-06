@@ -5,8 +5,6 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @flow
  */
 
 'use strict';
@@ -27,24 +25,20 @@ import MainSection from './MainSection.react';
 import React, {Component} from 'react';
 import TodoStore from '../flux-infra/TodoStore';
 
-type State = {
-  todos: Immutable.Map<string, Todo>,
-  areAllComplete: boolean,
-};
 
-class TodoApp extends Component<{}, {}, State> {
-  static getStores(): Array<Store> {
+class TodoApp extends Component {
+  static getStores() {
     return [TodoStore];
   }
 
-  static calculateState(prevState: ?State): State {
+  static calculateState(prevState) {
     return {
       todos: TodoStore.getState(),
       areAllComplete: TodoStore.areAllComplete(),
     };
   }
 
-  render(): ?ReactElement {
+  render() {
     return (
       <div>
         <Header />

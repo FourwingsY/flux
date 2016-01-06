@@ -5,8 +5,6 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @flow
  */
 
 'use strict';
@@ -18,13 +16,8 @@ import {dispatch} from '../flux-infra/TodoDispatcher';
 import React, {Component} from 'react';
 import TodoItem from './TodoItem.react';
 
-type Props = {
-  todos: Immutable.Map<string, Todo>,
-  areAllComplete: boolean,
-};
-
-export default class MainSection extends Component<{}, Props, {}> {
-  render(): ?ReactElement {
+export default class MainSection extends Component {
+  render() {
     const {todos, areAllComplete} = this.props;
 
     if (todos.size === 0) {
@@ -50,7 +43,7 @@ export default class MainSection extends Component<{}, Props, {}> {
     );
   }
 
-  _onToggleCompleteAll(): void {
+  _onToggleCompleteAll() {
     dispatch({type: 'todo/toggle-complete-all'});
   }
 }

@@ -5,28 +5,24 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @flow
  */
 
 'use strict';
 
-import type {Action} from './TodoActions';
-
 import Immutable from 'immutable';
+
 import {ReduceStore} from 'flux/utils';
 import Todo from './Todo';
 import TodoDispatcher from './TodoDispatcher';
 
 // Set up the store, If we didn't care about order we could just use MapStore
-type State = Immutable.OrderedMap<string, Todo>;
 
-class TodoStore extends ReduceStore<string, Todo> {
-  getInitialState(): State {
+class TodoStore extends ReduceStore {
+  getInitialState() {
     return Immutable.OrderedMap();
   }
 
-  reduce (state: State, action: Action): State {
+  reduce (state, action) {
     switch (action.type) {
       case 'todo/complete':
         return state.setIn([action.id, 'complete'], true);
@@ -55,13 +51,13 @@ class TodoStore extends ReduceStore<string, Todo> {
     }
   }
 
-  areAllComplete(): boolean {
+  areAllComplete() {
     return this.getState().every(todo => todo.complete);
   }
 }
 
 // Pure helper function to create a new Todo and add it to the state.
-function createTodo(state: State, text: ?string): State {
+function createTodo(state, text) {
   if (!text) {
     return state;
   }

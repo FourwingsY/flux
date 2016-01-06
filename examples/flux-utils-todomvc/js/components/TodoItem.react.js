@@ -5,8 +5,6 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @flow
  */
 
 'use strict';
@@ -19,20 +17,12 @@ import TodoTextInput from './TodoTextInput.react';
 
 import classnames from 'classnames';
 
-type Props = {
-  todo: Todo,
-};
-
-type State = {
-  isEditing: boolean,
-};
-
-export default class TodoItem extends Component<{}, Props, State> {
+export default class TodoItem extends Component {
   state = {
     isEditing: false,
   }
 
-  render(): ?ReactElement {
+  render() {
     const {todo} = this.props;
 
     let input;
